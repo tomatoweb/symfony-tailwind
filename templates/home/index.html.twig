@@ -4,9 +4,35 @@
 
 {% block body %}
 
-<div class="w-full h-[100vh]" style="opacity: 0.5; background-image:url('{{ asset('images/background.png') }}'); background-repeat: no-repeat; background-attachment: fixed; background-position: center;"> 
+<div class="w-full h-[100vh] p-20" style="background-image:url('{{ asset('images/background.png') }}'); background-repeat: no-repeat; background-attachment: fixed; background-position: center;"> 
 
-
+<h2 id="msg" style='font-weight: 700; font-size: x-large;'></h2>
 </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ encore_entry_script_tags('app') }}   
+    
+    <script>
+
+      const userJwtToken = 'demoSecretKey';
+
+      /* Mercure Protocol */
+      const eventSource = new EventSource("{{ mercure('https://example.com/books/1')|escape('js') }}",
+      {
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${userJwtToken}`
+        }
+      });
+      eventSource.onmessage = event => {
+        // Will be called every time an update is published by the server
+        message = JSON.parse(event.data).status;
+        document.getElementById('msg').innerHTML += message += '<br>';
+      }
+       
+    </script>
 
 {% endblock %}
