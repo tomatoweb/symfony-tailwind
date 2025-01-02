@@ -2,34 +2,37 @@
 
 namespace App\Repository;
 
-use App\Entity\Product;
+use App\Entity\Profile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * @extends ServiceEntityRepository<Product>
+ * @extends ServiceEntityRepository<Profile>
  */
-class ProductRepository extends ServiceEntityRepository
+class ProfileRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry,  private PaginatorInterface $paginator)
+
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginator)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, Profile::class);
     }
 
-    public function paginateProducts(int $page, int $limit): PaginationInterface
+
+    public function paginateProfiles(int $page, int $limit): PaginationInterface
     {
         return $this->paginator->paginate(
             $this->createQueryBuilder('r')
-            ->select('r'),
+            ->select('r', 'p')
+            ->leftJoin('r.pool', 'p'),
             $page,
             $limit
         );
     }
 
     //    /**
-    //     * @return Product[] Returns an array of Product objects
+    //     * @return Profile[] Returns an array of Profile objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -43,7 +46,7 @@ class ProductRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Product
+    //    public function findOneBySomeField($value): ?Profile
     //    {
     //        return $this->createQueryBuilder('p')
     //            ->andWhere('p.exampleField = :val')

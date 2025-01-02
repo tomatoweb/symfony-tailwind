@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Update Pool ' ~ pool.name  %}
+
+{% block body %}
+
+<style>
+    .wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 16px/1.5 sans-serif; }    
+    .hidden {opacity:0;transition:2s;}
+</style>
+
+<div class="wrapper">
+
+    <h2>Update Pool {{ pool.name }}</h2>
+
+    <div class="form">
+
+        {{ form(form) }}
+
+    </div>
+
+</div>
+{% endblock %}

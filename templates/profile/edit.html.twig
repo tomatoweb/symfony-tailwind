@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { margin: 1em auto; max-width: 600px; width: 95%; font: 16px/1.5 sans-serif; }    
+    .hidden {opacity:0;transition:2s;}
+</style>
+
+<div class="wrapper">
+
+    <div class="form">
+
+        Edit {{ profile.name }}:
+
+        {{ form(form) }}
+
+    </div>
+
+</div>
+{% endblock %}

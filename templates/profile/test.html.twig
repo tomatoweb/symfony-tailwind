@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CRUD and pagination with Symfony 7{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { margin: 1em auto; width: 80%; font: 16px/1.5 sans-serif; }
+</style>
+<div class="wrapper">
+
+    <table class="table">
+        <tbody>       
+            {% for profile in profiles %}
+                <tr class="table-secondary">
+                    <td><b>{{ profile.name }}</b> : {{ profile.description }}</td>
+                    <td >
+                        <div class="d-flex gap-2">                    
+                            <a class="btn btn-outline-primary btn-sm" href="{{ path('profile.edit', {id: profile.id}) }}">edit</a>
+                            <a class="btn btn-outline-danger btn-sm" href="{{ path('profile.delete', {id: profile.id}) }}">delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>   
+
+</div>
+{% endblock %}

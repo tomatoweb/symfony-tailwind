@@ -8,11 +8,12 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
+<div class="example-wrapper text-white">
+<div class="text-center my-6 text-2xl">Google API news from <span class="text-red-300">{{"now"|date("D d M Y")}}</span></div>
 <ul>
     {% for new in news %}
       {% if '[Removed]' not in new.title %}        
-        <li>
+        <li class="py-2">
             {{new.title}}
         </li>   
       {% endif %}

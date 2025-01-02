@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CRUD and pagination with Symfony 7{% endblock %}
+
+{% block body %}
+<style>
+    .wrapper { margin: 1em auto; width: 80%; font: 16px/1.5 sans-serif; }    
+    .hidden {opacity:0;transition:2s;}
+</style>
+
+<div class="wrapper">
+
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <h2>CRUD and pagination with Symfony 7 ✅</h2>
+
+    <a class="btn btn-primary  btn-sm mb-2 float-end" href="{{ path('pool.create') }}">create Pool</a>
+    <table class="table">
+    <tbody>       
+        {% for pool in pools %}
+            <tr class="table-secondary">
+                <td>{{ pool.name }} : {{ pool.domain }}</td>
+                <td >
+                    <div class="d-flex gap-2">                    
+                        <a class="btn btn-outline-primary btn-sm" href="{{ path('pool.update', {id: pool.id}) }}">edit</a>
+                        <form action="{{ path('pool.delete', {id: pool.id}) }}" method="post">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}    
+    </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-4">
+    
+    </div>
+
+</div>
+
+{% block javascripts %}
+    <script type="text/javascript">
+    // timeout sur les flashes
+    setTimeout( () => { 
+        var divs = document.querySelectorAll('.alert');
+        for (let i = 0; i < divs.length; i++) {
+        divs[i].classList.add("hidden");
+}
+    }, 2000  )
+    </script>
+{% endblock %}
+{% endblock %}

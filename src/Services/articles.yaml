@@ -1,0 +1,21 @@
+
+article1:
+    title: 'article 1'
+    author:
+        name: 'John'
+        firstname: 'Doe'
+article2:
+    title: 'article 2'
+    author:
+        name: 'James'
+        firstname: 'Cook'
+article3:
+    title: 'article 3'
+    author:
+        name: 'Jim'
+        firstname: 'Kerr'
+article4:
+    title: 'article 4'
+    author:
+        name: 'Bill'
+        firstname: 'Dalton'
