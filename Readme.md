@@ -1,4 +1,4 @@
-Symfony 7 + Tailwinx + Mercure Hub + Knp Paginator
+Symfony 7 + Tailwin + Mercure Hub + Knp Paginator
 --------------------------------------------------
 
 // Local Dev
