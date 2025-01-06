@@ -24,3 +24,11 @@ npm i
 
 npm run build
 
+
+
+
+
+Documentation:
+-------------
+
+https://symfony.com/doc/current/mercure.html
