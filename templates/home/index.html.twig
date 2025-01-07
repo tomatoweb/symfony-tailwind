@@ -13,18 +13,48 @@
 
 {% block javascripts %}
 
-    {{ encore_entry_script_tags('app') }}   
+    {{ encore_entry_script_tags('app') }}
     
     <script>
+
+    const a = `{
+    "glossary": {
+        "title": "example glossary",
+		"GlossDiv": {
+            "title": "S",
+			"GlossList": {
+                "GlossEntry": {
+                    "ID": "SGML",
+					"SortAs": "SGML",
+					"GlossTerm": "Standard Generalized Markup Language",
+					"Acronym": "SGML",
+					"Abbrev": "ISO 8879:1986",
+					"GlossDef": {
+                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+						"GlossSeeAlso": ["GML", "XML"]
+                    },
+					"GlossSee": "markup"
+                }
+            }
+        }
+    }
+}`;
+
+    
+
 
       const userJwtToken = 'demoSecretKey';
 
       /* Mercure Protocol */
+      // mercure() : is a twig function using env(MERCURE_PUBLIC_URL) and
+      // producing this :  http://localhost/.well-known/mercure?topic=https%3A%2F%2Fexample.com%2Fbooks%2F1
+    //console.log("{{ 'äöü<p>'|escape }}"); // äöü&lt;p&gt;
+    //console.log("{{ '<script>alert()</script>'|escape('js') }}"); // \u003Cscript\u003Ealert\u0028\u0029\u003C\/script\u003E
       const eventSource = new EventSource("{{ mercure('https://example.com/books/1')|escape('js') }}",
       {
         withCredentials: true,
         headers: {
-            Authorization: `Bearer ${userJwtToken}`
+            Authorization: `Bearer ${userJwtToken}`,
         }
       });
       eventSource.onmessage = event => {
