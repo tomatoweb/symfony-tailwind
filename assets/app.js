@@ -6,13 +6,10 @@
  */
 import './styles/app.scss';
 import $ from 'jquery';
-import welcome from './js/welcome.js';
 
 $(function() {
 
-  //$('body').prepend('<h1>' + welcome('Gary') + '</h1>');
-
-  // on clicking user menu dropdown button
+  // on click user menu dropdown button
   $('#user-menu-button').on("click", function() {
 		$('#user-menu').toggleClass('opacity-0');
     $('#user-menu > a').toggleClass('pointer-events-none');
@@ -27,10 +24,24 @@ $(function() {
     }
   });
 
+  
+  // on click card button
+  $('#card-button').on("click", function() {
+		$('#card').toggleClass('opacity-0 pointer-events-none');
+	});
+
+  // hide card on click outside card button
+  $('body').on("click", function(evt){
+    if(!$(evt.target).is('#card-button')) {
+        $('#card').addClass('opacity-0 pointer-events-none');
+    }
+  });
+
+
+
   // open dialog: product details
   $('.dialog-btn').on("click", function() {
     let id = $(this).attr('id');
-    console.log(id);
 		$('#dialog'+id).removeClass('opacity-0 pointer-events-none');
 	});
   
