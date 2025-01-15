@@ -15,12 +15,13 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "dev-server": "encore d ev-server",
+        "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@material-tailwind/html": "^2.3.2",
         "autoprefixer": "^10.4.20",
         "jquery": "^3.7.1",
         "postcss-loader": "^8.1.1",

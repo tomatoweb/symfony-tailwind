@@ -3,6 +3,8 @@ Symfony 7 + Tailwind + Mercure-Hub Real Time Push + Knp Paginator
 
 // Local Dev
 
+Launch Wamp
+
 composer install
 
 npm i

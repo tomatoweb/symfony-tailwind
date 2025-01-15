@@ -18,10 +18,10 @@ class ProductController extends AbstractController
     $products = $repo->paginateProducts($page, $limit);
     $maxPage = ceil($products->getTotalItemCount() / $limit);
 
-      return $this->render('product/index.html.twig', [
-          'products' => $products,
-          'maxPage' => $maxPage,
-          'page' => $page
-      ]);
+    return $this->render('product/index.html.twig', [
+        'products' => $products,
+        'maxPage' => $maxPage,
+        'page' => $page
+    ]);
   }
 }

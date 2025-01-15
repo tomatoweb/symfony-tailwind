@@ -9,103 +9,118 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+  #[ORM\Id]
+  #[ORM\GeneratedValue]
+  #[ORM\Column]
+  private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $name = null;
+  #[ORM\Column(length: 255)]
+  private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $Description = null;
+  #[ORM\Column(type: Types::TEXT, nullable: true)]
+  private ?string $Description = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+  #[ORM\Column(length: 255, nullable: true)]
+  private ?string $image = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $price = null;
+  #[ORM\Column(nullable: true)]
+  private ?float $price = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+  #[ORM\Column]
+  private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+  #[ORM\Column(nullable: true)]
+  private ?\DateTimeImmutable $updatedAt = null;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  #[ORM\ManyToOne(inversedBy: 'products')]
+  private ?Category $category = null;
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setName(string $name): static
-    {
-        $this->name = $name;
+  public function getName(): ?string
+  {
+    return $this->name;
+  }
 
-        return $this;
-    }
+  public function setName(string $name): static
+  {
+    $this->name = $name;
 
-    public function getDescription(): ?string
-    {
-        return $this->Description;
-    }
+    return $this;
+  }
 
-    public function setDescription(?string $Description): static
-    {
-        $this->Description = $Description;
+  public function getDescription(): ?string
+  {
+    return $this->Description;
+  }
 
-        return $this;
-    }
+  public function setDescription(?string $Description): static
+  {
+    $this->Description = $Description;
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
+    return $this;
+  }
 
-    public function setImage(?string $image): static
-    {
-        $this->image = $image;
+  public function getImage(): ?string
+  {
+    return $this->image;
+  }
 
-        return $this;
-    }
+  public function setImage(?string $image): static
+  {
+    $this->image = $image;
 
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
+    return $this;
+  }
 
-    public function setPrice(?float $price): static
-    {
-        $this->price = $price;
+  public function getPrice(): ?float
+  {
+    return $this->price;
+  }
 
-        return $this;
-    }
+  public function setPrice(?float $price): static
+  {
+    $this->price = $price;
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    return $this;
+  }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
+  public function getCreatedAt(): ?\DateTimeImmutable
+  {
+    return $this->createdAt;
+  }
 
-        return $this;
-    }
+  public function setCreatedAt(\DateTimeImmutable $createdAt): static
+  {
+    $this->createdAt = $createdAt;
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+    return $this;
+  }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
+  public function getUpdatedAt(): ?\DateTimeImmutable
+  {
+    return $this->updatedAt;
+  }
 
-        return $this;
-    }
+  public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+  {
+    $this->updatedAt = $updatedAt;
+
+    return $this;
+  }
+
+  public function getCategory(): ?Category
+  {
+      return $this->category;
+  }
+
+  public function setCategory(?Category $category): static
+  {
+      $this->category = $category;
+
+      return $this;
+  }
 }

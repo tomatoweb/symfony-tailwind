@@ -17,7 +17,8 @@ class PostRepository extends ServiceEntityRepository
     }
 
 
-    public function findOrFailByTitle(string $title) : Post {
+    public function findOrFailByTitle(string $title) : Post 
+    {
         
         return $this->createQueryBuilder('p')
             ->where('p.title = :title')
