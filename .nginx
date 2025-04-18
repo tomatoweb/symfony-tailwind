@@ -1,0 +1,76 @@
+# PHP Pass
+location / {
+	# Standard Parameter setzen
+	include /etc/nginx/fastcgi_params;
+
+	# Parameter aus Domainkonfiguration weitergeben
+	fastcgi_param    IGNORE_USER_ABORT   1; # Setzt den gleichnamigen Parameter
+	fastcgi_param    PRINT_ERROR         $print_error;
+	fastcgi_param    ENV_PATH            $env_path;
+	fastcgi_param    LOG_PATH            $log_path;
+	fastcgi_param    DATA_PATH           $data_path;
+	fastcgi_param    PDO_PATH            $pdo_path;
+	fastcgi_param	 REDIS_PATH			 $redis_path;
+	fastcgi_param    APP_PATH            $app_path;
+	fastcgi_param    SERVER_ADMIN        $server_admin;
+	fastcgi_param    DEV_MODE	 	     $dev_mode;
+
+	# App spezifischen Parameter hinzufügen
+	fastcgi_param    APP_LIB_PATH        $app_path/lib;
+	fastcgi_param    APP_CONTROLLER      \agency\controller;
+	fastcgi_param    SCRIPT_FILENAME     $env_path/app/agency/public/index.php;
+
+	# PHP starten
+	fastcgi_pass     $php_service;
+
+	# Fix to 405 Not Allowed when using POST serving static
+    error_page 405 = $uri;	
+
+	}
+
+# Blocke direkt favicon.ico
+location /favicon.ico {
+	return 404;
+	}
+
+# Verstecke versteckte Dateien
+location ~ /\. {
+	access_log off;
+	log_not_found off;
+	return 404;
+	}
+
+# Ansonsten Medien-Dateien auf Root Ebene blockieren
+location ~* ^/[^/]+\.(gif|jpg|jpeg|bmp|ico|png)$ {
+	access_log off;
+	log_not_found off;
+	return 404;
+	}
+
+# Build folder access
+location /build/ {
+	alias $app_path/public/build/;
+
+	add_header "Access-Control-Allow-Origin" "*";
+
+	gzip_static on;
+	gzip_proxied any;
+	gzip_vary on;
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+	try_files $uri =404;
+	}
+
+# Images folder access
+location /images/ {
+	alias $app_path/public/images/;
+
+	add_header "Access-Control-Allow-Origin" "*";
+
+	gzip_static on;
+	gzip_proxied any;
+	gzip_vary on;
+	gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+	try_files $uri =404;
+	}

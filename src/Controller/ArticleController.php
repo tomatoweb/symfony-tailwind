@@ -23,12 +23,16 @@ class ArticleController extends AbstractController
 
     #[Route('/posts', name: 'app_articles')]
     public function index(Request $request, EntityManagerInterface $manager, PostRepository $repository): Response
-    {
-        
-        $post = new Post();
-        $post->setTitle('mon premier article');
-        $post->setSlug('mon-premier-article');
-        $post->setContent('mon contenu ici ...');
+    {       
+      
+        /* 
+        *  Testing DB area 
+        */
+
+        /* $post = new Post();
+        $post->setTitle('my first post');
+        $post->setSlug('my-first-post');
+        $post->setContent('my content here ...');
         $post->setCreatedAt(new \DateTimeImmutable());
         $post->setUpdatedAt(new \DateTimeImmutable());
 
@@ -37,25 +41,27 @@ class ArticleController extends AbstractController
 
         $post = $manager->getRepository(Post::class)->findOrfailByTitle('mon premier article');
         
-        $post = $repository->findOrfailByTitle('mon premier article');
-        $post2 = $repository->findOrfailByTitle('mon premier article');
-        dd($post === $post2);
-        //$post->setSlug('mon-nouveau-slug');
-        //$manager->flush();
+        $post = $repository->findOrfailByTitle('my first post');
+        $post2 = $repository->findOrfailByTitle('my first post');
+        dump($post === $post2); // true
+        $post->setSlug('my-new-slug');
+        $manager->flush();
 
-        //dd($post); 
+        dump($post); 
 
-        /* $category = new Category(name: 'categorie #1');
-        $category2 = new Category(name: 'categorie #2');
-        $category3 = new Category(name: 'categorie #3');
+        $category = new Category(name: 'development');
+        $category2 = new Category(name: 'mobile');
+        $category3 = new Category(name: 'computer');
         $manager->persist($category);
         $manager->persist($category2);
-        $manager->persist($category3); */
+        $manager->persist($category3); 
+        $manager->flush();
         $posts = $repository->findAllWithCategory();
-        //$post->setCategory($category);
-        //$manager->flush();  
+        $post->setCategory($category);
+        $manager->flush();  
+        dd($posts); */
         
-
+        /* le but des DTO est de déplacer des données dans des appels distants (web api) coûteux */
         $data = new ContactDTO();
 
         $form = $this->createForm(ContactType::class, $data);
@@ -63,20 +69,14 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            dd($form->getData(), $data);
+            dd($form->getData());
         }
         
+        $posts = $repository->findAll();
 
         return $this->render('article/index.html.twig', [
-            'articles' => $articles['articles'],
             'form' => $form,
             'posts' => $posts
         ]);
-    }
-
-    #[Route('/hello/{slug}', name: 'hello', requirements: ['slug' => Requirement::ASCII_SLUG])]
-    public function hello(Request $request, string $slug): Response
-    {
-        return new Response($slug);        
     }
 }

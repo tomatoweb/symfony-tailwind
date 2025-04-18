@@ -25,11 +25,11 @@ services:
     # please note that last definitions always *replace* previous ones
 
 # Injecter un argument dans un service
-#  Décommenter ces lignes pour injecter l'apikey dans le service
+# Décommenter ces lignes pour injecter l'apikey dans le service
 #
-#    App\Services\ArticleApiProvider:
-#        arguments:
-#            $apikey: '%newsapi_key%'
+# App\Services\ArticleApiProvider:
+#  arguments:
+#   $apikey: '%newsapi_key%'
 #
 #
 #  OU BIEN utiliser #[Autowire('%newsapi_key%')] dans ArticleApiProvider

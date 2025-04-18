@@ -6,7 +6,11 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
+// Alternative 
 use Symfony\Component\Validator\Constraints as Assert;
+
+
+/* le but des DTO est de déplacer des données dans des appels distants coûteux (web api), des données ne provenant pas de la DB */
 
 
 class ContactDTO

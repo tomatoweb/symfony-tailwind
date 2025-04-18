@@ -1,8 +1,13 @@
 Symfony 7 + Tailwind + Mercure-Hub Real Time Push + Knp Paginator
 -----------------------------------------------------------------
 
-// Local Dev
+// DEMO
+Launch Wamp
+npm run dev
+symfony server:start        or  php -S localhost:8000 -t public
 
+
+// Local Dev
 Launch Wamp
 
 composer install
