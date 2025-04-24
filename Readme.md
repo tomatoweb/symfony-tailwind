@@ -7,8 +7,9 @@ npm run watch
 symfony server:start        or  php -S localhost:8000 -t public
 
 
-// Deployment 
-// on remote server
+// DEPLOYMENT 
+(on remote server)
+
 git pull 
 
 composer install
