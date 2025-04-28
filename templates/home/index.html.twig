@@ -57,8 +57,10 @@
             Authorization: `Bearer ${userJwtToken}`,
         }
       });
+      console.log(eventSource);
       eventSource.onmessage = event => {
         // Will be called every time an update is published by the server
+        console.log(JSON.parse(event.data));
         message = JSON.parse(event.data).status;
         document.getElementById('msg').innerHTML += message += '<br>';
       }

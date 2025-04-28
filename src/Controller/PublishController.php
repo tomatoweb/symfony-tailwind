@@ -18,6 +18,7 @@ class PublishController extends AbstractController
             'https://example.com/books/1',
             json_encode(['status' => 'This is an update from backend server'])
         );
+        //dd($update);
 
         $hub->publish($update);
 
