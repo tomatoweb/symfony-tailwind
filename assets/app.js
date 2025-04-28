@@ -24,6 +24,13 @@ $(function () {
         }
     });
 
+    // on click user menu dropdown button
+    $('#mobile-btn').on("click", function () {
+        $('#mobile-menu').toggle();
+    });
+
+    
+
 
     // open product
     $('.dialog-btn').on("click", function () {

@@ -13,6 +13,16 @@
     text-align: center;
   }
 }
+
+@media (prefers-color-scheme: light) {
+    .pagination {
+        span a{
+            color: white;
+            background-color: rgb(37 99 235);
+        }
+    }
+}
+
 .pagination {
   .current {
     display: inline-block;
@@ -22,6 +32,15 @@
     background-color: rgb(96, 102, 110);
     text-align: center;
   }
+}
+
+@media (prefers-color-scheme: light) {
+    .pagination {
+        .current {
+          color: white;
+          background-color: rgb(30 58 138 );
+        }
+      }
 }
 
 .axil-btn {
