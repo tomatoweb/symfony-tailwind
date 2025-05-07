@@ -81,24 +81,28 @@
 	https://www.youtube.com/watch?v=CpdM3tOIfz8&ab_channel=RahmouniOussama
 
 
-3.
-    open explorer in C:\Users\matha\OneDrive\Desktop\symfony7-tailwind-components\mercure
+3.  TEST DEMO :
+    ---------
 
-    shift + right click in this window -->	Open a Powershell CLI  (mercure.exe works only in Powershell CLI)
+    - CLOSE WAMP, XAMPP OR OTHER HTTP SERVER LISTENING ON PORT 80
 
-	type command: 	.\mercure.exe run --jwt-key 'demoSecretKey' --cors-allowed-origins 'http://localhost:8000' --allow-anonymous
+    _ open explorer in C:\Users\matha\OneDrive\Desktop\symfony7-tailwind-components\mercure
 
-	(help:  .\mercure.exe --help)
+        shift + right click in this window -->	Open a Powershell CLI  (mercure.exe works only in Powershell CLI)
+
+	    type command: 	.\mercure.exe run --jwt-key 'demoSecretKey' --cors-allowed-origins 'http://localhost:8000' --allow-anonymous
+
+	    ( see other options :  .\mercure.exe --help )
 
 4.
 	php -S localhost:8000 -t public
 
-	open client (subscriber) localhost:8000/client
+	open client (subscriber) on http://localhost:8000/client
 
 	A message should appear in the log powershell that the client has just subscribed:
 	{ ..., "caller":"mercure/subscribe.go:204","msg":"New subscriber","subscriber":{"id":"urn:uuid:c1339793-1fb5-48ba-a437-4c7c8ba5eea9","last_event_id":"","remote_addr":"[::1]:54068","topics":["https://example.com/books/1"]}}
 
 6.
-	open backend to publish : localhost:8000/publish
+	open backend to publish an update : http://localhost:8000/publish
 	
-	Each refresh will update the content of frontend localhost:8000/home via the Mercure hub	
+	Each refresh will update the content of frontend localhost:8000/client via the Mercure hub	

@@ -16,7 +16,7 @@ class PublishController extends AbstractController
     {
         $update = new Update(
             'https://example.com/books/1',
-            json_encode(['status' => 'This is an update from backend server'])
+            json_encode(['status' => 'This is an update from backend server via the Mercure hub (see  mercure/Lisez-moi.txt)'])
         );
         //dd($update);
 

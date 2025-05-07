@@ -15,15 +15,21 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProductController extends AbstractController
 {
   #[Route('/', name: 'app_product')]
-  public function index(Request $request, ProductRepository $repo, UserPasswordHasherInterface $hasher, EntityManagerInterface $em): Response
+  public function index(
+    Request $request, 
+    ProductRepository $repo, 
+    UserPasswordHasherInterface $hasher, 
+    EntityManagerInterface $em
+    ): Response
   {
-    /* $user = new User();
-    $user->setEmail('john@doe.fr')
+     /* $user = new User();
+    $user->setEmail('john4@doe.fr')
     ->setPassword($hasher
     ->hashPassword($user, '000000'))
     ->setRoles([]);
     $em->persist($user);
-    $em->flush(); */
+    $em->flush(); 
+    dd($user); */
     //$this->denyAccessUnlessGranted('USER_ROLE');
     $page = $request->query->getInt('page', 1);
     $limit = 8;
